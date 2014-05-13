@@ -2,3 +2,12 @@ CS 302 Assignment 7
 Floyd Warshall implementation
 
 In C or C++ implement the Floyd-Warshall algorithm to solve the all-pairs shortest path problem. Input will be given as a file at the command line (argv [1] ) containing an adjacency matrix representation of the directed graph. The first line in the file will be the integer number of vertices in the file, followed by the adjacency matrix which may contain negative integers. You may assume the integers in the file are relatively small and that an edge weight of 10000 will be used to indicate the non-existence of an edge between two vertices.
+
+Example input (from a file):
+5
+0 1 1 10000 10000
+5 0 2 10000 1
+10000 10000 0 1 2
+1 10000 10000 0 5
+10000 10000 10000 1 0
+
