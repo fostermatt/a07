@@ -16,8 +16,12 @@ int main(int argc, char *argv[]){
 	adMatrix = new int* [matrixSize];
 	for(int i = 0; i < matrixSize; i++){ // create and populate adjacency matrix
 		adMatrix[i] = new int[matrixSize];
-		for(int j = 0; j < matrixSize; j++)
+		for(int j = 0; j < matrixSize; j++){
 			fileIn >> adMatrix[i][j];
+			if(adMatrix[i][j]==10000){ // square to account for negative edges
+				adMatrix[i][j]=adMatrix[i][j]*adMatrix[i][j];
+			}
+		}
 	}
 	printMatrix(adMatrix,matrixSize,"\nOriginal matrix:\n");
 	calcPaths(adMatrix, matrixSize);
@@ -30,8 +34,9 @@ void printMatrix(int **table, int size, string title){
 	cout << title;
 	for(int i = 0; i < size; i++){
 		for(int j = 0; j < size; j++){
-			if(table[i][j] == 10000)
+			if(table[i][j] >= 10000){
 				cout << left << setw(6) << "inf";
+			}
 			else
 				cout << left << setw(6) << table[i][j];
 		}
@@ -42,8 +47,9 @@ void printMatrix(int **table, int size, string title){
 void calcPaths(int **table, int size){
 	for(int k = 0; k < size; k++){
 		for(int i = 0; i < size; i++){
-			for(int j = 0; j < size; j++)
+			for(int j = 0; j < size; j++){
 				table[i][j] = min(table[i][k] + table[k][j], table[i][j]);
+			}
 		}
 	}
 }
